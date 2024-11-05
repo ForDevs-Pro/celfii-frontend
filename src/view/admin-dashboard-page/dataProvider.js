@@ -1,7 +1,11 @@
-import { getRequest, postRequest, putRequest, deleteRequest } from "../../helpers/apiHelper";
+import { getRequest, postRequest, putRequest, deleteRequest , patchRequest} from "../../helpers/apiHelper";
 
 const dataProvider = {
   getList: async (resource, params) => {
+    if (resource === "dollar") {
+      const { data } = await getRequest(`/${resource}`);
+      return { data: [data], total: 1 };
+    }
     const query = {
       page: params.pagination.page,
       perPage: params.pagination.perPage,
@@ -20,9 +24,16 @@ const dataProvider = {
   },
 
   getOne: async (resource, params) => {
+    if (resource === "dollar") {
+      const response = await getRequest(`/${resource}/${params.id}`);
+      return { data: response.data };
+    }
+    
     const response = await getRequest(`/${resource}/${params.id}`);
     return response;
   },
+
+
 
   create: async (resource, params) => {
     const formData = new FormData();
@@ -48,6 +59,12 @@ const dataProvider = {
   },
 
   update: async (resource, params) => {
+
+    if (resource === "dollar") {
+      const response = await patchRequest(`/${resource}`, params.data); 
+      return response;
+    }
+
     const formData = new FormData();
     if (params.data.imagesToDelete && Array.isArray(params.data.imagesToDelete))
       params.data.imagesToDelete.forEach((image, index) =>

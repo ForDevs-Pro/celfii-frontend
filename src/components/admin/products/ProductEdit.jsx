@@ -25,7 +25,15 @@ const ProductEdit = () => {
     try {
       await dataProvider.update("products", {
         id: product.id.toString(),
-        data: { imagesToDelete, ...data },
+        data: {
+          imagesToDelete,
+          costArs: data.costArs ? data.costArs : null,
+          costUsd: data.costUsd ? data.costUsd : null,
+          priceArs: data.priceArs ? data.priceArs : null,
+          priceUsd: data.priceUsd ? data.priceUsd : null,
+          priceWholesale: data.priceWholesale ? data.priceWholesale : null,
+          ...data
+        },
       });
       notify("Producto actualizado exitosamente", { type: "info" });
       redirect("/admin/products");

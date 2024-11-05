@@ -23,6 +23,9 @@ import RoleList from "../../components/admin/roles/RoleList";
 
 import Charts from "../../components/admin/charts/Charts";
 
+import DollarList from "../../components/admin/dollar/DollarList";
+import DollarEdit from "../../components/admin/dollar/DollarEdit";
+
 const CustomAppBar = (props) => {
   const navigate = useNavigate();
 
@@ -83,6 +86,13 @@ const AdminDashboard = () => (
         edit={UserEdit}
       />
       <Resource name="charts" options={{ label: "Gráficos" }} list={Charts} />
+      <Resource name="charts" options={{ label: "Gráficos" }} list={Charts} />
+      <Resource
+        name="dollar"
+        options={{ label: "Dólar" }}
+        list={DollarList} 
+        edit={DollarEdit}
+      />
     </Admin>
   </ThemeProvider>
 );

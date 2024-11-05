@@ -19,7 +19,6 @@ export const ExportButton = (props: ExportButtonProps) => {
   const dataProvider = useDataProvider();
   const notify = useNotify();
 
-  // Función personalizada para exportar en formato .xlsx
   const exportToExcel = (
     data: any[],
     fetchRelatedRecords: any,
@@ -30,7 +29,6 @@ export const ExportButton = (props: ExportButtonProps) => {
     const workbook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(workbook, worksheet, "Datos");
 
-    // Generar y descargar el archivo Excel
     const excelBuffer = XLSX.write(workbook, { bookType: "xlsx", type: "array" });
     const dataBlob = new Blob([excelBuffer], { type: "application/octet-stream" });
     saveAs(dataBlob, `${resource}.xlsx`);
@@ -71,7 +69,6 @@ export const ExportButton = (props: ExportButtonProps) => {
 
 const defaultIcon = <DownloadIcon />;
 
-// Filtra propiedades innecesarias antes de pasarlas al botón
 const sanitizeRestProps = ({
   resource,
   ...rest

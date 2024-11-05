@@ -11,9 +11,9 @@ const WhatsAppButton = ({ cartItems = [], isCartPage = false }) => {
     const cartDetails = cartItems
       .map((item) => {
         const totalPrice = item.quantity * item.priceArs;
-        return `*Producto:* ${item.name}\n*Cantidad:* ${
-          item.quantity
-        }\n*Precio unitario:* ARS ${item.priceArs}\n*Total:* ARS ${totalPrice.toFixed(2)}\n`;
+        return `*Producto:* ${item.name}\n*Cantidad:* ${item.quantity}\n*Precio unitario:* ARS ${
+          item.priceArs
+        }\n*Total:* ARS ${totalPrice.toFixed(2)}\n`;
       })
       .join("\n");
 
@@ -43,7 +43,7 @@ const WhatsAppButton = ({ cartItems = [], isCartPage = false }) => {
       <FaWhatsapp size={24} />
       {isCartPage && <span className="ml-2">Continuar compra vía WhatsApp</span>}
       {!isCartPage && isHovered && (
-        <div className="absolute bottom-16 left-1/2 transform -translate-x-1/2 bg-white text-black text-center py-1 px-3 rounded-md shadow-md border border-gray-300">
+        <div className="absolute bottom-16 w-48 text-center left-1/2 transform -translate-x-[230px] translate-y-[52px] bg-white text-gray-600 py-1 px-3 rounded-md shadow-sm">
           Chatea con nosotros
         </div>
       )}
